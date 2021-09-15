@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "_macros.html" as macros %}
+
+{% block title %}Questions{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+  <nav class='navbar-fixed-top'>
+  {{nav.main_navbar.render()}}
+  </nav>
+{% endblock %}
+
+{% block content %}
+{% if not pagination.total == 0 %}
+    <body>
+        <header class='page-header'><h3>{{ questions[0].subject.subject_name  }}</h3></header>
+        {% for question in questions %}
+        <div id="questionSection{{question.id}}" class='questionbox'>
+                <p class="well">{{ question.question }} </p>
+                    <div class="row">
+                        <form question_id="{{question.id}}">
+                            <div class="col-md-6">
+                                {% for choices in question.choices.split(', ') %}
+                                <div>
+                                    <label for="{{question.id}}{{choices.split(' ')[0]}}" style='font-weight: 400;'>
+                                    <input type="radio" id="{{question.id}}{{choices.split(' ')[0]}}" name="choicesFor{{question.id}}" value="{{choices.split(' ')[0]}}" required>
+                                    <span class="wrappable">{{choices}}</span>
+                                    </label>
+                                </div>
+                                {% endfor %}
+                                <button type="submit" class="btn btn-sm btn-primary" id="submitButton{{question.id}}" style='margin-top: 1%;'>Answer</button>
+                            </div>
+                        </form>
+                    </div>
+                <hr>      
+        </div>
+        {% endfor %}
+    {% if not session['randomize'] %}
+        <div class="text-center" style="padding-bottom: 2%;">
+            {{ macros.pagination_widget(pagination, '.questionform') }}
+        </div>
+    {% else %}
+    <div class="text-center" style="padding-bottom: 2%;">
+        {{ macros.pagination_random(pagination, '.questionform') }}
+    </div>
+    {% endif %}
+    </body>
+{% else %}
+<div class="back">
+    <div class="div-center login">
+      <div class="content">
+        <h3>069</h3>
+        <hr>
+        <p class="error-message">No Questions Yet!</p>
+        <a href="{{ url_for('main.index') }}" class="btn btn-info btn-sm center">&#8592; Home</a>
+      </div>
+    </div>
+</div>
+{% endif %}
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='form.js') }}"></script>
+{% endblock %}

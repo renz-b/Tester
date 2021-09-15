@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block head %}
+    {{ super() }}
+    {% block title %}LogIn{% endblock %}
+{% endblock %}
+  
+{% block navbar %}
+  <nav class='navbar-fixed-top'>
+  {{nav.login_navbar.render()}}
+  </nav>
+{% endblock %}
+
+{% block content %}
+  <div class="back">
+    <div class="div-center login">
+      <div class="content">
+        <h3>Login</h3>
+        <hr>
+          <div class="form-group">
+          {{ wtf.quick_form(form) }}
+          <hr>
+          <span class="reglink">
+            <a href="{{ url_for('auth.register') }}">
+              Register here
+            </a>
+          </span>
+          <span class="guestlink">
+            <a href="{{ url_for('guest.questionform') }}">
+              Guest User
+            </a>
+          </span>
+          {% for message in get_flashed_messages() %}
+          <br><br>
+            <div class="alert alert-info">  
+              <button type="button" class="close" data-dismiss="alert">&times</button>
+              {{ message }}
+            </div>
+          {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
+  

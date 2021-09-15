@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block head %}
+    {% block title %}Add Question{% endblock %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+    <nav class='navbar-fixed-top'>
+    {{nav.main_navbar.render()}}
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class='container'>
+    <header class='page-header container'><h3>Add Question</h3></header>
+    <form action="" method="post" class="form" role="form">
+        <label for="formGroupExampleInput">{{ form.question.label }}</label>
+        {{ form.hidden_tag() }}
+        {{ form.question(class="form-control", placeholder="Questions") }}<br>
+        <label for="formGroupExampleInput">Choices:</label>
+        {{ form.choices(class="form-control", placeholder="Choices")}}<hr>
+        <label for="formGroupExampleInput">Answer:</label>
+        {{ form.answer(class="form-control", autocomplete="off", type="text", placeholder="Answer") }}<br>
+        {{ form.subject(class="form-control")}}<br>
+        {{ form.submit(class = "btn btn-primary btn-sm") }}
+    </form>
+    <div class="container">
+        <hr>
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-success">  
+                <button type="button" class="close" data-dismiss="alert">&times</button>
+                    {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

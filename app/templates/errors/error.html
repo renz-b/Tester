@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Error 404!{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+    <nav class='navbar-fixed-top'>
+    {{nav.login_navbar.render()}}
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class="back">
+  <div class="div-center login">
+    <div class="content">
+      <h3>{{ err_code }}</h3>
+      <hr>
+      <p class="error-message">{{message}}</p>
+   
+      <form method="GET" action="{{url_for('main.index')}}">
+        <button class="btn btn-info btn-sm center">&#8592; Home</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

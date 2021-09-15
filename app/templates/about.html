@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}About{% endblock %}
+
+{% block head %}
+    {{ super() }}
+{% endblock %}
+
+{% block navbar %}
+    <nav class='navbar-fixed-top'>
+    {{nav.main_navbar.render()}}
+    </nav>
+{% endblock %}
+
+{% block content %}
+<div class="back">
+  <div class="div-center" style="display: inline-block;">
+    <div class="content">
+      <h3>About</h3>
+      <hr>
+      <p class="qoute">
+        <a href="https://github.com/renz-b" target="_blank" rel="noopener noreferrer"><img src="static/github.png" class="btn-github"></a><br><br>
+        "A small web app that serves medical questions"
+      </p>
+      <p class="content-text">
+          Website is made with Flask as backend with Jinja2 and Flask-Bootsrap to render frontend. JQuery and AJAX for form submissions to refresh multiple choice questions without reloading the page.
+          Database used started with SQLite3 then migrated to PostgreSQL for easier hosting to Heroku. <br><br>Other extensions used were: FlaskSQLAlchemy (database operations), Flask-Nav (navbar rendering), Flask-WTForms
+          (form rendering and backend logic), Fkask-SSLify (security). <br><br>Adding questions whenever I can.
+      </p> 
+    </div>
+  </div>
+</div>
+{% endblock %}
