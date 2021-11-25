@@ -1,4 +1,4 @@
-# Tester
+![alt text](https://raw.githubusercontent.com/renz-b/Tester/master/app/static/favicon.ico "Logo") **Tester**
 
 _A small web app that serves multiple choice questions_
 
